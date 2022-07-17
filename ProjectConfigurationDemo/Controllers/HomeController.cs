@@ -17,9 +17,10 @@ namespace ProjectConfigurationDemo.Controllers
 
         public IActionResult Index()
         {
+            var logLevelSection = _configuration.GetSection("Logging:LogLevel");
             var homeModel = new HomeModel
             {
-                DefaultLogLevel = _configuration.GetValue<string>("Logging:LogLevel:Default")
+                DefaultLogLevel = logLevelSection.GetValue<string>("Default")
             };
             return View(homeModel);
         }
